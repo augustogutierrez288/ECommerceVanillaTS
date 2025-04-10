@@ -1,0 +1,7 @@
+.panel-cart {
+    top: 40px;
+    right: 0px;
+}
+.panel-cart.active{
+    display: flex !important;
+}
