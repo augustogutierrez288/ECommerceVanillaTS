@@ -63,6 +63,7 @@ class Cart implements ICart{
         if (!counterCart) throw new Error("Elemento counter-cart no encontrado");
 
         this.products.push(product);
+        console.table(this.products);
         counterCart.textContent = this.products.length.toString();
     }
     deleteProduct(product: IProduct): void{
@@ -92,31 +93,34 @@ class Ecommerce implements IEcommerce{
 
         this.products.forEach((product) =>{
             const container = document.createElement("article");
-            container.classList.add("card");
-            container.style.width = "18rem"
+            container.classList.add("card", "bg-white", "border-white");
+            container.style.width = "18rem";
+            container.style.height = "600px";
             container.innerHTML = 
             `
-                ${product.price > product.priceOff ? `<div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>` : ""}
-                <figure class="object-fit-cover">
-                    <img src="${product.img}" class="card-img-top" alt="${product.nameProduct}">
+                ${product.price > product.priceOff ? `<div class="badge bg-black text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>` : ""}
+                <figure class="object-fit-contain" style="width: 300px; height: 300px;">
+                    <img src="${product.img}" class="card-img-top w-100 h-100" alt="${product.nameProduct}">
                 </figure>
                 <div class="card-body">
-                    <h4 class="card-title">${product.nameProduct}</h4>
-                    <p class="card-text">${product.description}</p>
+                    <h3 class="card-title text-black mt-2 mb-2">${product.nameProduct}</h3>
+                    <p class="card-text text-black mt-2 mb-2">${product.description}</p>
                     ${
                         product.price > product.priceOff
                         ?
                         `
-                            <span class="text-muted text-decoration-line-through">$${product.price}</span>
-                            <p>$${product.priceOff}</p>
+                        <div class="d-flex justify-content-start align-items-center gap-2 mt-2 mb-2">
+                            <span class="d-block text-muted text-decoration-line-through text-black">$${product.price}</span>
+                            <p class="text-black m-0">$${product.priceOff}</p>
+                        </div>
                         `
                         :
                         `
-                            <p>$${product.price}</p>
+                            <p class="text-black mt-2 mb-2">$${product.price}</p>
                         `
                     }
                     
-                    <button class="btn btn-primary" type="button" id=${product.id}>Ver más.</button>
+                    <button class="btn btn-primary mt-2" type="button" id=${product.id}>Ver más.</button>
                 </div>
             `
             parentContainer.appendChild(container);
@@ -138,7 +142,7 @@ const AuricularM10 = new Product(
     "Auricular Inalambrico M10",
     12499,
     10899,
-    "Esta es una descripcion cualquiera",
+    "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Mollitia cumque provident magnam?",
     "Auriculares Inalambricos",
     5,
     "./assets/img/AuricularM10.png"
@@ -149,7 +153,7 @@ const AuricularTWSF9 = new Product(
     "Auricular Inalambrico F9 5.3v",
     14499,
     15499,
-    "Esta es una descripcion cualquiera",
+    "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Mollitia cumque provident magnam?",
     "Auriculares Inalambricos",
     3,
     "./assets/img/AuricularF9.png"
@@ -157,20 +161,20 @@ const AuricularTWSF9 = new Product(
 
 const SamsungAKG = new Product(
     "3",
-    "Auricular In-Ear Samsung AKG USB-C",
+    "Auricular Samsung AKG USB-C",
     15499,
     12399,
-    "Esta es una descripcion cualquiera",
+    "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Mollitia cumque provident magnam?",
     "Auriculares Inalambricos",
     4,
     "./assets/img/SamsungAKG.png"
 );
 const AuricularA6s = new Product(
     "4",
-    "Auricular Inalambricos Wireless A6s",
+    "Auricular Inalambrico A6s",
     15499,
     9799,
-    "Esta es una descripcion cualquiera",
+    "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Mollitia cumque provident magnam?",
     "Auriculares Inalambricos",
     3,
     "./assets/img/AuricularA6s.png"
@@ -178,10 +182,10 @@ const AuricularA6s = new Product(
 
 const AuricularSamsung = new Product(
     "5",
-    "Auricular In-Ear Samsung Clasico Original",
+    "Auricular In-Ear Samsung Blanco",
     37499,
     38199,
-    "Esta es una descripcion cualquiera",
+    "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Mollitia cumque provident magnam?",
     "Auriculares Inalambricos",
     5,
     "./assets/img/SamsungBlancos.png"
@@ -189,10 +193,10 @@ const AuricularSamsung = new Product(
 
 const AuricularP9 = new Product(
     "6",
-    "Auricular Inalambricos Vincha P9",
+    "Auricular Inalambrico P9",
     38499,
     40699,
-    "Esta es una descripcion cualquiera",
+    "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Mollitia cumque provident magnam?",
     "Auriculares Inalambricos",
     5,
     "./assets/img/AuricularP9.png"
